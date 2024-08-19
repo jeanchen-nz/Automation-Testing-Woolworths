@@ -3,6 +3,7 @@ const exp = require('constants');
 
 test("Valid Registration", async ({ page }) => {
     await page.goto("https://www.woolworths.co.nz/");
+
     await page.locator('button:has-text("Sign in or Register")').click();
     await page.locator("text='Register for online shopping'").click();
     await page.waitForLoadState('networkidle');
