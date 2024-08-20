@@ -1,3 +1,7 @@
+/**
+ * Represents a Login Page.
+ * @class
+ */
 const { test, expect } = require('@playwright/test');
 const exp = require('constants');
 
@@ -14,3 +18,4 @@ test("Valid Registration", async ({ page }) => {
   });
 
 
+  
