@@ -23,3 +23,18 @@ test("email update", async ({ page }) => {
     await page.locator('text="Successful"').isVisible();
 
 });
+
+test("password update", async ({ page }) => {
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.login('testww@mail.com', 'Countdown@2024');
+    await page.getByRole('button', { name: 'Kia ora, Mary' }).click();
+    await page.getByRole('link', { name: 'More account options' }).click();
+    await page.getByRole('link', { name: 'Manage email and password' }).click();
+    await page.getByTestId('resetPasswordLink').click();
+    await expect(page.getByText('Resetting your password here')).toBeVisible();
+    await page.getByTestId('submitButton').click();
+    await expect(page.getByText('We\'ve sent a password reset')).toBeVisible();
+
+
+});
