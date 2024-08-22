@@ -13,6 +13,7 @@ class LoginPage {
       await this.page.getByTestId('email').getByPlaceholder('Please enter email address').fill(email);
       await this.page.getByTestId('submitButton').click();
       await this.page.getByTestId('passwordInput').fill(password);
+      await this.page.keyboard.press('Tab');
       await this.page.getByTestId('submitButton').click();
       await this.page.waitForLoadState('networkidle');
     }
