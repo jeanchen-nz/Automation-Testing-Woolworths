@@ -20,4 +20,29 @@ test("preferences via email", async ({ page }) => {
 });
 
 
+test("preferences via SMS", async ({ page }) => {
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.login('testww@mail.com', 'Countdown@2024');
+    await page.getByRole('button', { name: 'Kia ora, Mary' }).click();
+    await page.getByRole('link', { name: 'More account options' }).click();
+    await page.getByRole('link', { name: 'Communication preferences' }).click();
+    await page.locator('#ss-preference-sms div').click();
+    await page.pause();
+
+});
+
+
+test.only("preferences about alcohol", async ({ page }) => {
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.login('testww@mail.com', 'Countdown@2024');
+    await page.getByRole('button', { name: 'Kia ora, Mary' }).click();
+    await page.getByRole('link', { name: 'More account options' }).click();
+    await page.getByRole('link', { name: 'Communication preferences' }).click();
+    await page.getByLabel('I\'m alcohol free:').click();
+
+});
+
+
     
