@@ -1,11 +1,12 @@
 const { test, expect } = require('@playwright/test');
 const exp = require('constants');
-const LoginPage = require('../common/loginClass');
 
+
+test.beforeEach(async ({ page }) => {
+    await page.goto('https://www.woolworths.co.nz/');
+});
 
 test("search by category", async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    await loginPage.login('testww@mail.com', 'Countdown@2024');
     await page.getByText('Browse').click();
     await page.getByRole('menuitem', { name: 'Fruit & Veg' }).click();
     await page.getByRole('menuitem', { name: 'Fruit', exact: true }).click();
@@ -17,21 +18,17 @@ test("search by category", async ({ page }) => {
     for (let i = 0; i < productCount; i++) {
         const card = productTitles.nth(i)
         const exploreButton = page.getByLabel('linkText')
-        if(exploreButton) {
+        if (exploreButton) {
             continue;
         }
 
         const title = await card.innerText();
-        expect(title.toLowerCase()).toContain('apple'); 
-        
-        }
-
+        expect(title.toLowerCase()).toContain('apple');
+    }
 });
 
 
-test("search by search bar", async({page}) => {
-    const loginPage = new LoginPage(page);
-    await loginPage.login('testww@mail.com', 'Countdown@2024');
+test("search by search bar", async ({ page }) => {
     await page.locator('#search').fill('apple');
     await page.locator('#search').press('Enter');
 
@@ -41,25 +38,21 @@ test("search by search bar", async({page}) => {
     for (let i = 0; i < productCount; i++) {
         const card = productTitles.nth(i)
         const exploreButton = page.getByLabel('linkText')
-        if(exploreButton) {
+        if (exploreButton) {
             continue;
         }
 
         const title = await card.innerText();
-        expect(title.toLowerCase()).toContain('apple'); 
-        
-        }
+        expect(title.toLowerCase()).toContain('apple');
+
+    }
 
 });
 
-test("search by invalid keywords", async({page}) => {
-    const loginPage = new LoginPage(page);
-    await loginPage.login('testww@mail.com', 'Countdown@2024');
+test("search by invalid keywords", async ({ page }) => {
     await page.locator('#search').fill('xyz123');
     await page.locator('#search').press('Enter');
-
     await expect(page.locator('.heading--huge')).toHaveText('No results found for "xyz123"');
-
 });
 
 

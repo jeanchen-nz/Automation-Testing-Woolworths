@@ -1,5 +1,8 @@
 // @ts-check
 const { defineConfig, devices } = require('@playwright/test');
+const path = require('path');
+
+export const STORAGE_STATE = path.join(__dirname, 'playwright/.auth/user.json');
 
 /**
  * Read environment variables from file.
@@ -13,9 +16,9 @@ const { defineConfig, devices } = require('@playwright/test');
 module.exports = defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
-  timeout: 60*1000,
-  expect:{
-    timeout: 5*1000
+  timeout: 60 * 1000,
+  expect: {
+    timeout: 5 * 1000
   },
   //fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -30,6 +33,7 @@ module.exports = defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
+    baseURL: 'https://www.woolworths.co.nz/',
     headless: false,
     screenshot: 'off',
     video: 'off',
@@ -41,12 +45,19 @@ module.exports = defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] 
-      
-      },
+      name: 'setup',
+      testMatch: '**/auth.setup.js',
     },
-    
+    {
+      name: 'chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: STORAGE_STATE,
+      },
+      testMatch: '**/*.spec.js',
+      dependencies: ['setup'],
+    },
+
     // {
     //   name: 'firefox',
     //   use: { ...devices['Desktop Firefox'] },
