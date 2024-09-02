@@ -13,13 +13,13 @@ class LoginPage {
       await this.page.getByTestId('email').getByPlaceholder('Please enter email address').fill(email);
       await this.page.getByTestId('submitButton').click();
       await this.page.getByTestId('passwordInput').fill(password);
-      await this.page.keyboard.press('Enter');  
+      await this.page.keyboard.press('Tab');  
       await this.page.getByTestId('submitButton').click();
       await this.page.waitForLoadState('networkidle');
     }
 
     async isLoggedIn() {
-      return await this.page.isVisible(this.page.getByRole('button', { name: 'Kia ora, Mary' }));
+      return await this.page.getByRole('span', { name: 'Kia ora, Mary' }).isVisible();
     }
   }
 

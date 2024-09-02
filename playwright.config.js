@@ -2,7 +2,7 @@
 const { defineConfig, devices } = require('@playwright/test');
 const path = require('path');
 
-export const STORAGE_STATE = path.join(__dirname, 'playwright/.auth/user.json');
+export const STORAGE_STATE = 'playwright/.auth/user.json';
 
 /**
  * Read environment variables from file.
