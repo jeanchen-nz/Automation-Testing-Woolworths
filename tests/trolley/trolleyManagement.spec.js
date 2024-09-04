@@ -23,3 +23,16 @@ test('adding item to trolley', async ({ page }) => {
     expect(title.toLowerCase()).toContain('milk');
 
 });
+
+test('update quantity of item in trolley', async ({ page }) => {
+
+    await page.getByRole('link', { name: 'Review order or checkout $' }).click();
+    await page.pause();
+    await page.locator('.qty-increment').first().click();
+
+    const updatedQuantity = await page.locator('#quantity-282843').inputValue();
+    expect(updatedQuantity).toBe('2');
+
+});
+
+
