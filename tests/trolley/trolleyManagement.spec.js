@@ -59,3 +59,34 @@ test('remove item from trolley', async ({ page }) => {
 
 });
 
+test.only('trolley persistency', async({ page }) =>{
+
+
+    await page.getByRole('link', { name: 'Review order or checkout $' }).click();
+    const headerText = await page.getByRole('heading', { name: 'Trolley' }).innerText();
+    expect (headerText).toBe('Trolley'); 
+
+    const item = page.locator('.product-details');
+    await page.waitForSelector('.product-details');
+    const count = await item.count();
+    console.log(count);
+
+    await page.getByRole('button', { name: 'Kia ora, Mary' }).click();
+    await page.getByRole('link', { name: 'Sign Out' }).click();
+
+    await page.waitForURL('https://www.woolworths.co.nz/');
+
+    let loginPage = new LoginPage(page);
+    await loginPage.login(process.env.USER_NAME, process.env.PASSWORD);
+
+    await loginPage.isLoggedIn();
+
+    await page.getByRole('link', { name: 'Review order or checkout $' }).click();
+    const item2 = page.locator('.product-details');
+    await page.waitForSelector('.product-details');
+    const count2 = await item2.count();
+    console.log(count2);
+
+    expect(count).toBe(count2);
+
+});
