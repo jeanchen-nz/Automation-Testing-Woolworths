@@ -6,6 +6,19 @@ test.beforeEach(async ({ page }) => {
     await page.goto('https://www.woolworths.co.nz/');
 });
 
+test('view trolley', async ({ page }) => {
+
+    await page.getByRole('link', { name: 'Review order or checkout $' }).click();
+    const headerText = await page.getByRole('heading', { name: 'Trolley' }).innerText();
+    expect (headerText).toBe('Trolley'); 
+
+    const item = page.locator('.product-details');
+    await page.waitForSelector('.product-details');
+    const count = await item.count();
+    console.log(count);
+
+});
+
 test('adding item to trolley', async ({ page }) => {
 
     const searchBar = page.locator('#search');
@@ -45,3 +58,4 @@ test('remove item from trolley', async ({ page }) => {
     expect(count).toBe(1);
 
 });
+
