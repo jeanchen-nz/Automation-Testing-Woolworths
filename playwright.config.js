@@ -14,6 +14,8 @@ export const STORAGE_STATE = 'playwright/.auth/user.json';
  * @see https://playwright.dev/docs/test-configuration
  */
 module.exports = defineConfig({
+  globalSetup: './tests/globalSetup.js',
+
   testDir: './tests',
   /* Run tests in files in parallel */
   timeout: 60 * 1000,
