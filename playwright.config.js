@@ -51,13 +51,21 @@ module.exports = defineConfig({
       testMatch: '**/auth.setup.js',
     },
     {
-      name: 'chromium',
+      name: 'chromium-logged-in',
       use: {
         ...devices['Desktop Chrome'],
         storageState: STORAGE_STATE,
       },
+      testIgnore: 'tests/trolley/notLoggedIn.spec.js',
       testMatch: '**/*.spec.js',
       dependencies: ['setup'],
+    },
+    {
+      name: 'chromium-not-logged-in',
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+      testMatch: 'tests/trolley/notLoggedIn.spec.js'
     },
 
     // {

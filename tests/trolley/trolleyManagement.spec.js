@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const exp = require('constants');
+
 const LoginPage = require('../common/loginClass');
 
 test.beforeEach(async ({ page }) => {
@@ -59,7 +59,7 @@ test('remove item from trolley', async ({ page }) => {
 
 });
 
-test.only('trolley persistency', async({ page }) =>{
+test('trolley persistency', async({ page }) =>{
 
 
     await page.getByRole('link', { name: 'Review order or checkout $' }).click();
