@@ -29,3 +29,25 @@ test('member price', async ({ page }) => {
 
 });
     
+
+test.only('specials', async ({ page }) => {
+    await page.getByRole('button', { name: 'Specials & offers' }).click();
+    await page.pause();
+    await page.locator('#cdk-overlay-0').getByRole('link', { name: 'Specials & offers' })
+    await page.waitForLoadState('networkidle');
+
+    const productTitles = page.getByLabel('Special.');
+    const productCount = await productTitles.count();
+
+    for (let i = 0; i < productCount; i++) {
+        const card = productTitles.nth(i)
+        
+        if (productTitles) {
+            continue;
+        }
+
+        const title = await card.innerText();
+        expect(title.toLowerCase()).toContain('special');
+    }
+
+});
