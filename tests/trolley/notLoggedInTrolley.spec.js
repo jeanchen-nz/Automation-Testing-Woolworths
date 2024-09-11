@@ -9,6 +9,7 @@ test('prevent view trolley without login', async ({ page }) => {
 
 });
 
+
 test('prevent adding item to trolley without login', async ({ page }) => {
     await page.goto('https://www.woolworths.co.nz/');
     const searchBar = page.locator('#search');

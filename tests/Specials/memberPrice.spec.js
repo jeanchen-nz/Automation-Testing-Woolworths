@@ -30,9 +30,8 @@ test('member price', async ({ page }) => {
 });
     
 
-test.only('specials', async ({ page }) => {
+test('specials', async ({ page }) => {
     await page.getByRole('button', { name: 'Specials & offers' }).click();
-    await page.pause();
     await page.locator('#cdk-overlay-0').getByRole('link', { name: 'Specials & offers' })
     await page.waitForLoadState('networkidle');
 

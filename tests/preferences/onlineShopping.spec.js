@@ -2,11 +2,14 @@ const { test, expect } = require('@playwright/test');
 const exp = require('constants');
 const LoginPage = require('../common/loginClass');
 
+test.beforeEach(async ({ page }) => {
+    await page.goto('https://www.woolworths.co.nz/');
+});
+
 
 test("packing slip", async ({ page }) => {
     
-    const loginPage = new LoginPage(page);
-    await loginPage.login('testww@mail.com', 'Countdown@2024');
+   
     await page.getByRole('button', { name: 'Kia ora, Mary' }).click();
     await page.getByRole('link', { name: 'More account options' }).click();
     await page.getByRole('link', { name: 'Online shopping preferences' }).click();
@@ -20,8 +23,7 @@ test("packing slip", async ({ page }) => {
 
 test("other preferences", async ({ page }) => {
     
-    const loginPage = new LoginPage(page);
-    await loginPage.login('testww@mail.com', 'Countdown@2024');
+    
     await page.getByRole('button', { name: 'Kia ora, Mary' }).click();
     await page.getByRole('link', { name: 'More account options' }).click();
     await page.getByRole('link', { name: 'Online shopping preferences' }).click();

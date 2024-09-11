@@ -2,11 +2,14 @@ const { test, expect } = require('@playwright/test');
 const exp = require('constants');
 const LoginPage = require('../common/loginClass');
 
+test.beforeEach(async ({ page }) => {
+    await page.goto('https://www.woolworths.co.nz/');
+});
+
 
 test("email update", async ({ page }) => {
     
-    const loginPage = new LoginPage(page);
-    await loginPage.login('testww@mail.com', 'Countdown@2024');
+    
     await page.getByRole('button', { name: 'Kia ora, Mary' }).click();
     await page.getByRole('link', { name: 'More account options' }).click();
     await page.getByRole('link', { name: 'Manage email and password' }).click();
@@ -26,8 +29,7 @@ test("email update", async ({ page }) => {
 
 test("password update", async ({ page }) => {
     
-    const loginPage = new LoginPage(page);
-    await loginPage.login('testww@mail.com', 'Countdown@2024');
+    
     await page.getByRole('button', { name: 'Kia ora, Mary' }).click();
     await page.getByRole('link', { name: 'More account options' }).click();
     await page.getByRole('link', { name: 'Manage email and password' }).click();

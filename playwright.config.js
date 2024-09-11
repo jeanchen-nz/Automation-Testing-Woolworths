@@ -38,7 +38,10 @@ module.exports = defineConfig({
     baseURL: 'https://www.woolworths.co.nz/',
     headless: false,
     screenshot: 'off',
-    video: 'off',
+    video: {
+      mode: 'on',
+      size: { width: 640, height: 480 },
+    },
     trace: 'retain-on-failure',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     //trace: 'on-first-retry',
@@ -56,7 +59,7 @@ module.exports = defineConfig({
         ...devices['Desktop Chrome'],
         storageState: STORAGE_STATE,
       },
-      testIgnore: 'tests/trolley/notLoggedIn.spec.js',
+      testIgnore: '**/notLoggedIn*.spec.js',
       testMatch: '**/*.spec.js',
       dependencies: ['setup'],
     },
@@ -65,7 +68,7 @@ module.exports = defineConfig({
       use: {
         ...devices['Desktop Chrome'],
       },
-      testMatch: 'tests/trolley/notLoggedIn.spec.js'
+      testMatch: '**/notLoggedIn*.spec.js'
     },
 
     // {

@@ -7,7 +7,7 @@ test("Valid Registration", async ({ page }) => {
     await page.locator('button:has-text("Sign in or Register")').click();
     await page.locator("text='Register for online shopping'").click();
     await page.waitForLoadState('networkidle');
-    await page.locator("#emailInput").fill('wesseicahocru-9326@yopmail.com');
+    await page.locator("#emailInput").fill('wesseicahocru-9111@yopmail.com');
     await page.getByTestId('submitButton').click();
     await page.waitForLoadState('domcontentloaded');
     await page.getByTestId('passwordInput').fill('Woolworths@2024');
@@ -18,11 +18,11 @@ test("Valid Registration", async ({ page }) => {
     await page.locator('#dobDay').fill('11');
     await page.locator('#dobMonth').fill('12');
     await page.locator('#dobYear').fill('1999');
-    await page.locator('#mobile').fill('022 982 829');
+    await page.locator('#mobile').fill('022 982 828');
     await page.locator('label:has-text("Please send me personalised offers and updates from Woolworths.")').click();
     await page.getByTestId('submit').click();
     await page.waitForTimeout(7000);
-    await page.locator('.inputText').fill('PO Box 89084, Torbay, Aucklan');
+    await page.getByLabel('Find your street address').fill('PO Box 89084, Torbay, Aucklan');
     await page.keyboard.press('d');
     await page.waitForTimeout(1000);
     await page.keyboard.press('ArrowDown');
