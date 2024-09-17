@@ -40,3 +40,40 @@ test('view saved list', async ({ page }) => {
     
 
     });
+
+test('edit saved list', async ({ page}) => {
+
+    await page.getByText('Browse').click();
+    await page.getByRole('menuitem', { name: 'Fruit & Veg' }).click();
+    await page.getByRole('menuitem', { name: 'Fruit', exact: true }).click();
+    await page.getByRole('menuitem', { name: 'Apples' }).click();
+
+    const productTitles = await page.locator('img[src*="155003.jpg"]');
+    await productTitles.click();
+    await page.getByText('Add to saved list').click();
+    await page.locator('.product-savedList').click();
+
+
+    await page.getByText('Favourites & lists').click();
+    await page.getByRole('link', { name: 'Saved lists' }).click();
+    await page.waitForLoadState('networkidle');
+
+    await page.getByRole('link', { name: 'Milk' }).click();
+    const newProduct = page.locator('.cdx-card-cup-adjustment');
+    const newProductCount = await newProduct.count();
+   
+    for (let i = 0; i < newProductCount; i++) {
+        const card = newProduct.nth(i)
+        const exploreButton = page.getByLabel('linkText')
+        if (exploreButton) {
+            continue;
+        }
+
+        const title = await card.innerText();
+        expect(title.toLowerCase()).toContain('apple');
+    }
+
+        
+});
+
+
