@@ -76,4 +76,19 @@ test('edit saved list', async ({ page}) => {
         
 });
 
+test('delete product from saved list', async ({ page }) => {
+        
+        await page.getByText('Favourites & lists').click();
+        await page.getByRole('link', { name: 'Saved lists' }).click();
+        await page.waitForLoadState('networkidle');
+    
+        await page.getByRole('link', { name: 'Milk' }).click();
+       
+        const trashIcon = page.locator('product-stamp-grid').filter({ hasText: 'fresh fruit apples royal gala' }).getByLabel('Remove from saved list');
+    
+        await trashIcon.click();
+        await page.waitForLoadState('networkidle');
+        
+        page.getByRole('button', { name: 'Remove', exact: true })
 
+});
