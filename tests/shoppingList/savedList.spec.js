@@ -89,6 +89,24 @@ test('delete product from saved list', async ({ page }) => {
         await trashIcon.click();
         await page.waitForLoadState('networkidle');
         
-        page.getByRole('button', { name: 'Remove', exact: true })
+        page.getByRole('button', { name: 'Remove', exact: true }).click();
 
 });
+
+test.only('delete saved list', async ({ page }) => {
+    
+        await page.getByText('Favourites & lists').click();
+        await page.getByRole('link', { name: 'Saved lists' }).click();
+        await page.waitForLoadState('networkidle');
+        
+        const deleteButton = page.getByRole('main').getByRole('img')
+        await deleteButton.click();
+        await page.locator('button:has-text("Yes, delete list")').click();
+
+        await page.waitForLoadState('networkidle');
+        const textElement = page.locator('text="No saved lists."');
+        await expect(textElement).toBeVisible();
+
+    });
+ 
+    
