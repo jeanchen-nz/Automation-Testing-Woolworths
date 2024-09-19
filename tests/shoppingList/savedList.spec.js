@@ -93,7 +93,7 @@ test('delete product from saved list', async ({ page }) => {
 
 });
 
-test.only('delete saved list', async ({ page }) => {
+test('delete saved list', async ({ page }) => {
     
         await page.getByText('Favourites & lists').click();
         await page.getByRole('link', { name: 'Saved lists' }).click();
@@ -109,4 +109,3 @@ test.only('delete saved list', async ({ page }) => {
 
     });
  
-    
