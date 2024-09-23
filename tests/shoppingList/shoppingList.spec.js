@@ -32,6 +32,16 @@ test('create basic shopping list', async ({ page }) => {
         };
     });
 
+test.only('delete basic shopping list', async ({ page}) =>{
 
+    await page.getByText('Favourites & lists').click();
+    await page.getByRole('link', { name: 'Shopping list' }).click();
+    await page.waitForLoadState('networkidle');
+
+    await page.getByRole('button', { name: 'Clear list' }).click();
+    expect(page.locator('.editSearchList-searchList')).toBeEmpty();
+
+
+});
 
 
