@@ -32,7 +32,11 @@ test('create basic shopping list', async ({ page }) => {
         };
     });
 
-test.only('delete basic shopping list', async ({ page}) =>{
+
+
+    
+
+test('delete basic shopping list', async ({ page}) =>{
 
     await page.getByText('Favourites & lists').click();
     await page.getByRole('link', { name: 'Shopping list' }).click();
