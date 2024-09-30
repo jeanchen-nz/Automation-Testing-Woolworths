@@ -12,3 +12,14 @@ test('view recipes', async ({ page }) => {
     expect(page.locator('text="Recipes"')).toBeVisible();
 
 });
+
+test('create personal recipes', async ({ page}) => {
+    await page.locator('span:has-text("Recipes")').click();
+    await page.locator('.recipeStamp-title').nth(0).click();
+    
+    await page.getByRole('button', { name: 'Save', exact: true }).click();
+
+    expect(page.getByRole('button', { name: 'Saved' })).toBeVisible();
+
+
+});
