@@ -13,7 +13,7 @@ test('view recipes', async ({ page }) => {
 
 });
 
-test('create personal recipes', async ({ page}) => {
+test.only('create personal recipes', async ({ page}) => {
     await page.locator('span:has-text("Recipes")').click();
     await page.locator('.recipeStamp-title').nth(0).click();
     
@@ -44,5 +44,39 @@ test('delete personal recipes', async ({ page }) => {
 
     expect(page.locator('.listContent-errorMessage')).toBeVisible();
 
+
+});
+
+test('view detailed recipes', async ({ page }) => {
+    await page.locator('span:has-text("Recipes")').click();
+
+    await page.locator('.recipeStamp-title').nth(0).click();
+   
+
+    expect(page.getByRole('heading', { name: 'Ingredients' })).toBeVisible();
+    expect(page.getByRole('heading', { name: 'Method' })).toBeVisible();
+
+
+});
+
+test('add ingredients to trolley', async ({ page}) => {
+
+    await page.locator('span:has-text("Recipes")').click();
+
+    await page.locator('.recipeStamp-title').nth(0).click();
+    await page.getByRole('button', { name: 'Add items to trolley', exact: true }).click();
+    
+    
+    await page.getByRole('button', { name: 'Add to trolley', exact: true }).click();
+    const ingredient = await page.locator('.ingredientStamp-productName').nth(0).textContent();
+
+    await page.getByRole('link', { name: 'Review order or checkout $' }).click();
+    
+    const item = page.locator('.product-titleAndPrice');
+    const count = await item.count();
+    for (let i = 0; i < count; i++) {
+        const title = await item.nth(i).innerText();
+        expect(title.toLowerCase()).toContain(ingredient);
+    }
 
 });
