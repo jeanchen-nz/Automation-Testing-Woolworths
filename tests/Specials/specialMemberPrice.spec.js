@@ -28,7 +28,7 @@ test('member price', async ({ page }) => {
 
 
 });
-    
+// this test is for checking the member price. It will click on the specials and offers button, then click on the member price button. It will then check if the products displayed are member price products.    
 
 test('specials', async ({ page }) => {
     await page.getByRole('button', { name: 'Specials & offers' }).click();
@@ -50,3 +50,4 @@ test('specials', async ({ page }) => {
     }
 
 });
+// this test is for checking the specials. It will click on the specials and offers button, then click on the specials button. It will then check if the products displayed are specials.

@@ -2,7 +2,11 @@
  * @file onlineShopping.spec.js
  * @description This file contains automated tests for online shopping preferences on the Woolworths website using Playwright.
  */
+// Import the test and expect functions from Playwright
 
+// Import the constants module
+
+// Import the LoginPage class from the common directory
 const { test, expect } = require('@playwright/test');
 const exp = require('constants');
 const LoginPage = require('../common/loginClass');

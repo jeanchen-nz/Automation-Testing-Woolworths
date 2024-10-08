@@ -12,6 +12,7 @@ test("Invalid email Registration", async ({ page }) => {
     await expect(page.locator('text="Please enter a valid email address"')).toBeVisible();
 
 });
+// This test navigates to the Woolworths website, attempts to register with an invalid email address, and verifies that the error message 'Please enter a valid email address' is displayed.
 
 test("Invalid missing fields Registration", async ({ page }) => {
     await page.goto("https://www.woolworths.co.nz/");
@@ -26,6 +27,7 @@ test("Invalid missing fields Registration", async ({ page }) => {
     await expect(page.locator('.submit-button')).toBeDisabled();
 
 });
+// This test navigates to the Woolworths website, attempts to register with missing fields, and verifies that the submit button is disabled.
 
 test("Invalid password Registration", async ({ page }) => {
     await page.goto("https://www.woolworths.co.nz/");
@@ -40,6 +42,7 @@ test("Invalid password Registration", async ({ page }) => {
     await expect(page.locator('.submit-button')).toBeDisabled();
 
 });
+// This test navigates to the Woolworths website, attempts to register with an invalid password, and verifies that the submit button is disabled.
 
 test("Duplicate email Registration", async ({ page }) => {
     await page.goto("https://www.woolworths.co.nz/");
@@ -53,6 +56,7 @@ test("Duplicate email Registration", async ({ page }) => {
     await expect(page.locator('text="Enter your existing Woolworths account password to sign in."')).toBeVisible();
 
 });
+// This test navigates to the Woolworths website, attempts to register with a duplicate email address, and verifies that the error message 'Enter your existing Woolworths account password to sign in.' is displayed.
 
 test("Invalid DOB Registration", async ({ page }) => {
     await page.goto("https://www.woolworths.co.nz/");
@@ -75,6 +79,7 @@ test("Invalid DOB Registration", async ({ page }) => {
     await expect(page.locator('text="The entered date of birth is not a valid date of birth."')).toBeVisible();
 
 });
+// This test navigates to the Woolworths website, attempts to register with an invalid date of birth, and verifies that the error message 'The entered date of birth is not a valid date of birth.' is displayed.
 
 
     

@@ -5,12 +5,13 @@ const LoginPage = require('../common/loginClass');
 test.beforeEach(async ({ page }) => {
     await page.goto('https://www.woolworths.co.nz/');
 });
+// go to the woolworths homepage
 
 test('searching for popular items', async ({ page }) => {
     const searchBar = page.locator('#search'); 
-    await searchBar.click(); 
-    await page.pause();
     
+    await searchBar.click(); 
+  
 
     const popularItems = [
         'Milk',
@@ -37,6 +38,7 @@ test('searching for popular items', async ({ page }) => {
         expect(itemFound).toBeTruthy();
     }
 });
+// this test is for searching for popular items. It will click on the search bar and then check if the popular items are displayed in the suggestions.
 
 test('Auto suggestion for search bar', async ({ page }) => {
    
@@ -61,5 +63,6 @@ test('Auto suggestion for search bar', async ({ page }) => {
         expect(text.toLowerCase()).toContain('mi');
     }
 });
+// this test is for the auto suggestion in the search bar. It will click on the search bar, type 'MI' and then check if the suggestions contain 'MI'.
 
 

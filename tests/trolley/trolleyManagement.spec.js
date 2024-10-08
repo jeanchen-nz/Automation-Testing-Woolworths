@@ -18,6 +18,7 @@ test('view trolley', async ({ page }) => {
     console.log(count);
 
 });
+// this test is for viewing the trolley. It will click on the review order or checkout button and check if the user is redirected to the trolley page.
 
 test('adding item to trolley', async ({ page }) => {
 
@@ -36,6 +37,7 @@ test('adding item to trolley', async ({ page }) => {
     expect(title.toLowerCase()).toContain('milk');
 
 });
+// this test is for adding an item to the trolley. It will search for Milk and add it to the trolley. It will then check if the item is displayed in the trolley.
 
 test('update quantity of item in trolley', async ({ page }) => {
 
@@ -46,6 +48,7 @@ test('update quantity of item in trolley', async ({ page }) => {
     expect(updatedQuantity).toBe('2');
 
 });
+// this test is for updating the quantity of an item in the trolley. It will click on the review order or checkout button and then increment the quantity of the first item in the trolley. It will then check if the quantity is updated to 2.
 
 test('remove item from trolley', async ({ page }) => {
 
@@ -58,6 +61,7 @@ test('remove item from trolley', async ({ page }) => {
     expect(count).toBe(1);
 
 });
+// this test is for removing an item from the trolley. It will click on the review order or checkout button and then click on the remove button of the second item in the trolley. It will then check if the item is removed from the trolley.
 
 test('trolley persistency', async({ page }) =>{
 
@@ -90,3 +94,4 @@ test('trolley persistency', async({ page }) =>{
     expect(count).toBe(count2);
 
 });
+// this test is for checking the trolley persistency. It will click on the review order or checkout button and check the number of items in the trolley. It will then log out and log back in and check if the number of items in the trolley is the same.

@@ -8,7 +8,7 @@ test('prevent view trolley without login', async ({ page }) => {
     await page.getByRole('heading', { name: 'Enter your email' }).isVisible();
 
 });
-
+// this test is for preventing the user from viewing the trolley without logging in. It will click on the review order or checkout button and check if the user is redirected to the login page.
 
 test('prevent adding item to trolley without login', async ({ page }) => {
     await page.goto('https://www.woolworths.co.nz/');
@@ -22,3 +22,4 @@ test('prevent adding item to trolley without login', async ({ page }) => {
     await page.locator('text="Sign in to add items to your trolley."').isVisible();
 
 });
+// this test is for preventing the user from adding an item to the trolley without logging in. It will search for Milk and add it to the trolley. It will then check if a popup is displayed with the text 'Sign in to add items to your trolley.'

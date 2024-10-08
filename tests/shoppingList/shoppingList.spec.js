@@ -32,7 +32,7 @@ test('create basic shopping list', async ({ page }) => {
         };
     });
 
-
+// this test is for creating a basic shopping list. It will click on the favourites and lists button, then click on the shopping list button. It will then fill in the search list with Milk, Bread, and Eggs. It will then click on the save list button and check if the items are displayed in the list.
 
     
 
@@ -48,4 +48,4 @@ test('delete basic shopping list', async ({ page}) =>{
 
 });
 
-
+//  this test is for deleting a basic shopping list. It will click on the favourites and lists button, then click on the shopping list button. It will then click on the clear list button and check if the list is empty.

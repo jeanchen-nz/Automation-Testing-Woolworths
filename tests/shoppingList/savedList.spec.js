@@ -24,6 +24,7 @@ test('create saved list', async ({ page }) => {
 
 
 });
+// this test is for creating a saved list. It will click on the review order or checkout button, then save the items as a list and name the list as Milk. It will then click on the save list button and check if the modal is visible.
 
 test('view saved list', async ({ page }) => {
     
@@ -40,6 +41,7 @@ test('view saved list', async ({ page }) => {
     
 
     });
+    // this test is for viewing the saved list. It will click on the favourites and lists button, then click on the saved lists button. It will then check if the saved list named Milk is visible.
 
 test('edit saved list', async ({ page}) => {
 
@@ -75,6 +77,7 @@ test('edit saved list', async ({ page}) => {
 
         
 });
+//  this test is for editing the saved list. It will click on the browse button and then select the fruit and veg category, then the fruit category, and finally the apples category. It will then click on the add to saved list button and then click on the saved list. It will then click on the favourites and lists button, then click on the saved lists button. It will then click on the saved list named Milk and check if the products displayed are
 
 test('delete product from saved list', async ({ page }) => {
         
@@ -92,6 +95,7 @@ test('delete product from saved list', async ({ page }) => {
         page.getByRole('button', { name: 'Remove', exact: true }).click();
 
 });
+// this test is for deleting a product from the saved list. It will click on the favourites and lists button, then click on the saved lists button. It will then click on the saved list named Milk, then click on the remove from saved list button and then click on the remove button.
 
 test('delete saved list', async ({ page }) => {
     
@@ -108,4 +112,4 @@ test('delete saved list', async ({ page }) => {
         await expect(textElement).toBeVisible();
 
     });
- 
+ // this test is for deleting the saved list. It will click on the favourites and lists button, then click on the saved lists button. It will then click on the delete button and then click on the yes, delete list button. It will then check if the message "No saved lists." is displayed.
