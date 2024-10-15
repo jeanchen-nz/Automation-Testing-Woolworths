@@ -51,7 +51,7 @@ test("email update", async ({ page }) => {
     await page.locator('text="Successful"').isVisible();
 });
 
-test("password update", async ({ page }) => {
+test.only("password update", async ({ page }) => {
     /**
      * Test case for updating the password.
      * @param {Object} page - The Playwright page object.
@@ -71,6 +71,7 @@ test("password update", async ({ page }) => {
     
     // Verify that the password reset instructions are visible
     await expect(page.getByText('Resetting your password here')).toBeVisible();
+    await page.pause();
     
     // Click the button to submit the password reset request
     await page.getByTestId('submitButton').click();

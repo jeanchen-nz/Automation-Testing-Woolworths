@@ -11,7 +11,6 @@ test('create basic shopping list', async ({ page }) => {
         await page.waitForLoadState('networkidle');
        
         await page.locator('.editSearchList-searchList').fill('Milk\nBread\nEggs');
-        await page.pause();
        
         await page.getByRole('button', { name: 'Save list' }).click();
         await page.locator('.editSearchList-searchButton').click();

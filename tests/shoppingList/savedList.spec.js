@@ -92,6 +92,7 @@ test('delete product from saved list', async ({ page }) => {
         await trashIcon.click();
         await page.waitForLoadState('networkidle');
         
+        
         page.getByRole('button', { name: 'Remove', exact: true }).click();
 
 });

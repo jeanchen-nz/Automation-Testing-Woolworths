@@ -44,7 +44,7 @@ test("Invalid password Registration", async ({ page }) => {
 });
 // This test navigates to the Woolworths website, attempts to register with an invalid password, and verifies that the submit button is disabled.
 
-test("Duplicate email Registration", async ({ page }) => {
+test.only("Duplicate email Registration", async ({ page }) => {
     await page.goto("https://www.woolworths.co.nz/");
 
     await page.locator('button:has-text("Sign in or Register")').click();
@@ -52,7 +52,7 @@ test("Duplicate email Registration", async ({ page }) => {
     await page.waitForLoadState('networkidle');
     await page.locator("#emailInput").fill('testww@mail.com');
     await page.getByTestId('submitButton').click();
-    await page.waitForLoadState('domcontentloaded');
+    //await page.waitForLoadState('domcontentloaded');
     await expect(page.locator('text="Enter your existing Woolworths account password to sign in."')).toBeVisible();
 
 });

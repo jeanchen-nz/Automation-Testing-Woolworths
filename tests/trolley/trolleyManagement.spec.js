@@ -25,6 +25,7 @@ test('adding item to trolley', async ({ page }) => {
     const searchBar = page.locator('#search');
 
     await searchBar.click();
+    await page.pause();
     await page.keyboard.type('Milk');
     await page.keyboard.press('Enter');
 
@@ -32,7 +33,7 @@ test('adding item to trolley', async ({ page }) => {
 
     await page.getByRole('link', { name: 'Review order or checkout $' }).click();
 
-    const item = page.locator('#product-282843-title');
+    const item = page.locator('#product-705692-title');
     const title = await item.innerText();
     expect(title.toLowerCase()).toContain('milk');
 
@@ -43,8 +44,8 @@ test('update quantity of item in trolley', async ({ page }) => {
 
     await page.getByRole('link', { name: 'Review order or checkout $' }).click();
     await page.locator('.qty-increment').first().click();
-
-    const updatedQuantity = await page.locator('#quantity-282843').inputValue();
+    await page.pause();
+    const updatedQuantity = await page.locator('#quantity-705692').inputValue();
     expect(updatedQuantity).toBe('2');
 
 });
@@ -55,6 +56,7 @@ test('remove item from trolley', async ({ page }) => {
     await page.getByRole('link', { name: 'Review order or checkout $' }).click();
     const removeButton = page.locator('button:has-text("Remove")');
     await removeButton.nth(1).click();
+    
 
     const item = page.locator('.product-titleAndPrice');
     const count = await item.count();

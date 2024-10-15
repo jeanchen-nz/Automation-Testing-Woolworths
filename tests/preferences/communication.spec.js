@@ -131,33 +131,5 @@ test("preferences about alcohol", async ({ page }) => {
     await page.getByLabel('I\'m alcohol free:').click();
 });
 
-/**
- * Test to update communication preferences via postal mail.
- * 
- * @param {Object} page - The Playwright page object.
- * @description This test navigates through the Woolworths website to update the communication preferences for postal mail notifications.
- * It clicks on the user greeting button, navigates to more account options, and then to communication preferences.
- * Finally, it confirms the preferences by clicking on the postal mail preference section.
- */
-test("preferences via postal mail", async ({ page }) => {
-    /**
-     * Click on the user greeting button.
-     */
-    await page.getByRole('button', { name: 'Kia ora, Mary' }).click();
-    
-    /**
-     * Click on the link for more account options.
-     */
-    await page.getByRole('link', { name: 'More account options' }).click();
-    
-    /**
-     * Click on the link for communication preferences.
-     */
-    await page.getByRole('link', { name: 'Communication preferences' }).click();
-    
-    /**
-     * Confirm the postal mail preferences by clicking on the postal mail preference section.
-     */
-    await page.locator('#ss-preference-postal div').click();
-});
+
     

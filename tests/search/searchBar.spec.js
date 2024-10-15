@@ -11,7 +11,7 @@ test('searching for popular items', async ({ page }) => {
     const searchBar = page.locator('#search'); 
     
     await searchBar.click(); 
-  
+    
 
     const popularItems = [
         'Milk',
@@ -49,12 +49,16 @@ test('Auto suggestion for search bar', async ({ page }) => {
     await page.keyboard.press('I');
     await page.pause();
 
-
-    const suggestions = await page.getByRole('option').all();
+    const suggestionBox = page.getByRole('listbox').first();
+    console.log(suggestionBox);
+    const suggestions = await suggestionBox.getByRole('option').all();
     
     let texts = [];
     for (const suggestion of suggestions) {
         const text = await suggestion.innerText();
+        if(text == ''){
+            continue;
+        }
         texts.push(text);
         console.log(text);
     }

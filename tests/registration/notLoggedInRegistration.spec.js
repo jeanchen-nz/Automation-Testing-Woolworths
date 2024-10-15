@@ -10,7 +10,7 @@ test("Valid Registration", async ({ page }) => {
     // click on the 'Register for online shopping' button
     await page.waitForLoadState('networkidle');
     // wait for the page to load
-    await page.locator("#emailInput").fill('wesseicahocru-9111@yopmail.com');
+    await page.locator("#emailInput").fill('wesseicahocru-19101@yopmail.com');
     // fill in the email field with a valid email address   
     await page.getByTestId('submitButton').click();
     // click on the submit button
@@ -21,7 +21,7 @@ test("Valid Registration", async ({ page }) => {
     await page.locator("button#showPassword").click();
     // click on the 'show password' button
     await page.locator('.submit-button').click();
-    // click on the submit button
+    //click on the submit button
     await page.getByLabel('First name *').fill('Mary');
     // fill in the first name field with 'Mary'
     await page.locator('#lastName').fill('Lee');
@@ -32,16 +32,17 @@ test("Valid Registration", async ({ page }) => {
     // fill in the month of birth field with '12'
     await page.locator('#dobYear').fill('1999');
     // fill in the year of birth field with '1999'
-    await page.locator('#mobile').fill('022 982 828');
-    // fill in the mobile number field with '022 982 828'
-    await page.locator('label:has-text("Please send me personalised offers and updates from Woolworths.")').click();
-    // click on the 'Please send me personalised offers and updates from Woolworths.' checkbox
+    await page.locator('#mobile').fill('022 982 8291');
+    await page.getByText('Please send me personalised offers and updates from Woolworths.').click();
+    
+    
     await page.getByTestId('submit').click();
     // click on the submit button
     await page.waitForTimeout(7000);
+    // await page.pause();
     // wait for 7 seconds
-    await page.getByLabel('Find your street address').fill('PO Box 89084, Torbay, Aucklan');
-    // fill in the street address field with 'PO Box 89084, Torbay, Aucklan'
+    await page.getByLabel('Find your street address').fill('867 New North Road, Mount Albert, Aucklan');
+    // fill in the address 
     await page.keyboard.press('d');
     // press the 'd' key
     await page.waitForTimeout(1000);
@@ -50,13 +51,13 @@ test("Valid Registration", async ({ page }) => {
     // press the 'ArrowDown' key
     await page.keyboard.press('Enter');
     // press the 'Enter' key
-    await page.getByRole('option', { name: 'PO Box 89084, Torbay, Auckland' }).click();
-    // click on the 'PO Box 89084, Torbay, Auckland' option
+    // await page.getByRole('option', { name: 'Flat1, 867 New North Road, Mount Albert, Auckland 1025' }).click();
+    
     await page.waitForTimeout(1000);
     // wait for 1 second
     await page.getByRole('button', { name: 'Add my delivery address' }).click();
     // click on the 'Add my delivery address' button
-    await page.getByRole('link', { name: 'Continue shopping from the' }).click();
+    //await page.getByRole('link', { name: 'Continue shopping from the' }).click();
     // click on the 'Continue shopping from the' link
     await expect(page.locator('text="Mary, welcome to Woolworths!"')).toBeVisible();
     // expect the 'Mary, welcome to Woolworths!' text to be visible

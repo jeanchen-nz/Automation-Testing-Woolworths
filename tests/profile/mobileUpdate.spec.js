@@ -35,7 +35,7 @@ test("Mobile Update", async ({ page }) => {
     await page.locator('#mobilePhone').fill("");
     
     // Fill the mobile phone input field with a new number
-    await page.locator('#mobilePhone').fill('0271231131');
+    await page.locator('#mobilePhone').fill('0271231132');
     
     // Click the update details button
     await page.getByRole('button', { name: 'Update details' }).click();
@@ -60,7 +60,7 @@ test("Home Phone Update", async ({ page }) => {
     await page.getByRole('link', { name: 'Personal details' }).click();
     
     // Fill the home phone input field with a new number
-    await page.locator('#homePhone').fill("095123124");
+    await page.locator('#homePhone').fill("095123125");
     
     // Click the update details button
     await page.getByRole('button', { name: 'Update details' }).click();

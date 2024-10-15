@@ -22,18 +22,22 @@ test.beforeEach(async ({ page }) => {
  */
 test('view recipes', async ({ page }) => {
     await page.locator('span:has-text("Recipes")').click();
-    expect(page.locator('text="Recipes"')).toBeVisible();
+
+    const title = page.getByRole('heading', { name: 'Easy Meals' });
+
+    await expect(title).toBeVisible();
 });
 
 /**
  * Test to create personal recipes.
  * @param {Object} page - The Playwright page object.
  */
-test.only('create personal recipes', async ({ page }) => {
+test('create personal recipes', async ({ page }) => {
     await page.locator('span:has-text("Recipes")').click();
     await page.locator('.recipeStamp-title').nth(0).click();
     await page.getByRole('button', { name: 'Save', exact: true }).click();
-    expect(page.getByRole('button', { name: 'Saved' })).toBeVisible();
+
+    await expect(page.getByRole('button', { name: 'Saved', exact: true })).toBeVisible();
 });
 
 /**
@@ -43,7 +47,7 @@ test.only('create personal recipes', async ({ page }) => {
 test('view personal recipes', async ({ page }) => {
     await page.locator('span:has-text("Recipes")').click();
     await page.locator('text="Saved Recipes"').click();
-    const recipesTitle = page.getByLabel('Prep & Cook Time5 mins + 10');
+    const recipesTitle = page.getByLabel('Dinner Lunch');
     await expect(recipesTitle).toBeVisible();
 });
 
@@ -54,11 +58,12 @@ test('view personal recipes', async ({ page }) => {
 test('delete personal recipes', async ({ page }) => {
     await page.locator('span:has-text("Recipes")').click();
     await page.locator('text="Saved Recipes"').click();
-    await page.locator('.recipeStamp-image').click();
-    await page.getByRole('button', { name: 'Saved', exact: true }).click();
+    
+    await page.getByLabel('Remove Meatball & Cheese Subs').click();
+    
     await page.locator('span:has-text("Recipes")').click();
     await page.locator('text="Saved Recipes"').click();
-    expect(page.locator('.listContent-errorMessage')).toBeVisible();
+    await expect(page.locator('.listContent-errorMessage')).toBeVisible();
 });
 
 /**
@@ -68,8 +73,8 @@ test('delete personal recipes', async ({ page }) => {
 test('view detailed recipes', async ({ page }) => {
     await page.locator('span:has-text("Recipes")').click();
     await page.locator('.recipeStamp-title').nth(0).click();
-    expect(page.getByRole('heading', { name: 'Ingredients' })).toBeVisible();
-    expect(page.getByRole('heading', { name: 'Method' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Ingredients' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Method' })).toBeVisible();
 });
 
 /**
