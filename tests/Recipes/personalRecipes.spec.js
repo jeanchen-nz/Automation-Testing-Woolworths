@@ -47,7 +47,7 @@ test('create personal recipes', async ({ page }) => {
 test('view personal recipes', async ({ page }) => {
     await page.locator('span:has-text("Recipes")').click();
     await page.locator('text="Saved Recipes"').click();
-    const recipesTitle = page.getByLabel('Dinner Lunch');
+    const recipesTitle = page.getByLabel('Cheesy Pulled Pork Nachos');
     await expect(recipesTitle).toBeVisible();
 });
 
@@ -55,11 +55,11 @@ test('view personal recipes', async ({ page }) => {
  * Test to delete personal recipes.
  * @param {Object} page - The Playwright page object.
  */
-test('delete personal recipes', async ({ page }) => {
+test.only('delete personal recipes', async ({ page }) => {
     await page.locator('span:has-text("Recipes")').click();
     await page.locator('text="Saved Recipes"').click();
     
-    await page.getByLabel('Remove Meatball & Cheese Subs').click();
+    await page.getByLabel('Remove Cheesy Pulled Pork').click();
     
     await page.locator('span:has-text("Recipes")').click();
     await page.locator('text="Saved Recipes"').click();

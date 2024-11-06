@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
 
 test('member price', async ({ page }) => {
     await page.getByRole('button', { name: 'Specials & offers' }).click();
-    await page.pause();
+    
     await page.getByRole('link', { name: 'Member Price', exact: true }).click();
     await page.waitForLoadState('networkidle');
 

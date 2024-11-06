@@ -1,5 +1,5 @@
 /**
- * @fileoverview This file contains the LoginPage class which provides methods to perform login actions on the Woolworths website using Playwright.
+ * This file contains the LoginPage class which provides methods to perform login actions on the Woolworths website using Playwright.
  */
 
 const { test, expect } = require('@playwright/test');

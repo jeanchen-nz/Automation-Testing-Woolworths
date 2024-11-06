@@ -25,7 +25,7 @@ test('adding item to trolley', async ({ page }) => {
     const searchBar = page.locator('#search');
 
     await searchBar.click();
-    await page.pause();
+    
     await page.keyboard.type('Milk');
     await page.keyboard.press('Enter');
 
@@ -33,7 +33,7 @@ test('adding item to trolley', async ({ page }) => {
 
     await page.getByRole('link', { name: 'Review order or checkout $' }).click();
 
-    const item = page.locator('#product-705692-title');
+    const item = page.locator('#product-282768-title');
     const title = await item.innerText();
     expect(title.toLowerCase()).toContain('milk');
 
@@ -44,8 +44,8 @@ test('update quantity of item in trolley', async ({ page }) => {
 
     await page.getByRole('link', { name: 'Review order or checkout $' }).click();
     await page.locator('.qty-increment').first().click();
-    await page.pause();
-    const updatedQuantity = await page.locator('#quantity-705692').inputValue();
+    
+    const updatedQuantity = await page.locator('#quantity-282768').inputValue();
     expect(updatedQuantity).toBe('2');
 
 });
@@ -54,18 +54,28 @@ test('update quantity of item in trolley', async ({ page }) => {
 test('remove item from trolley', async ({ page }) => {
 
     await page.getByRole('link', { name: 'Review order or checkout $' }).click();
-    const removeButton = page.locator('button:has-text("Remove")');
-    await removeButton.nth(1).click();
+    
+    const removeButton = page.getByRole('button', { name: 'Remove' });
+    await removeButton.click();
+    
+    const trolleyEmpty = page.getByRole('heading', { name: 'No items' });
+    await expect(trolleyEmpty).toBeVisible();
     
 
-    const item = page.locator('.product-titleAndPrice');
-    const count = await item.count();
-    expect(count).toBe(1);
 
 });
 // this test is for removing an item from the trolley. It will click on the review order or checkout button and then click on the remove button of the second item in the trolley. It will then check if the item is removed from the trolley.
 
 test('trolley persistency', async({ page }) =>{
+
+    const searchBar = page.locator('#search');
+
+    await searchBar.click();
+    
+    await page.keyboard.type('Milk');
+    await page.keyboard.press('Enter');
+
+    await page.locator('.addToTrolley-btn--add').first().click();
 
 
     await page.getByRole('link', { name: 'Review order or checkout $' }).click();

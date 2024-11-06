@@ -71,7 +71,7 @@ test.only("password update", async ({ page }) => {
     
     // Verify that the password reset instructions are visible
     await expect(page.getByText('Resetting your password here')).toBeVisible();
-    await page.pause();
+    
     
     // Click the button to submit the password reset request
     await page.getByTestId('submitButton').click();
